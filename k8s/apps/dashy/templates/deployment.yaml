@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dashy.fullname" . }}
+  labels:
+    app: {{ include "dashy.name" . }}
+spec:
+  replicas: {{ .Values.dashy.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "dashy.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "dashy.name" . }}
+    spec:
+      containers:
+        - name: dashy
+          image: "{{ .Values.dashy.image.repository }}:{{ .Values.dashy.image.tag }}"
+          imagePullPolicy: {{ .Values.dashy.image.pullPolicy }}
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config
+              mountPath: /app/public/conf.yml
+              subPath: conf.yml
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 15
+            periodSeconds: 20
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "dashy.fullname" . }}-config

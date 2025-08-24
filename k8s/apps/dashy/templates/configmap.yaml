@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "dashy.fullname" . }}-config
+data:
+  conf.yml: |
+    appConfig:
+      title: Dashy
+    sections:
+      - name: Homelab
+        items:
+          - title: Home Assistant
+            url: http://homeassistant.home.svc.cluster.local:8123
+            icon: home-assistant

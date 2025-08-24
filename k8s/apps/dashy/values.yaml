@@ -1,0 +1,30 @@
+dashy:
+  replicaCount: 1
+
+  image:
+    repository: lissy93/dashy
+    tag: "3.1.1"
+    pullPolicy: IfNotPresent
+
+  service:
+    type: ClusterIP
+    port: 80
+
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      cpu: 200m
+      memory: 512Mi
+
+  ingress:
+    enabled: true
+    className: tailscale
+    host: dashy
+    tls:
+      enabled: true
+      hosts:
+        - dashy
+
+  resources: {}
