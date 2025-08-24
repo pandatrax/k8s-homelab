@@ -1,0 +1,17 @@
+homeassistant:
+  deployment:
+    enabled: true
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 8123
+  persistence:
+    enabled: true
+    size: 10Gi
+    storageClassName: nfs-client
+  image:
+    repository: "ghcr.io/home-assistant/home-assistant"
+    tag: "stable"
+  env:
+    - name: TZ
+      value: "America/Los_Angeles"

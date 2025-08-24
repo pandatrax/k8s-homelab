@@ -1,0 +1,44 @@
+{{- if .Values.homeassistant.deployment.enabled | default true }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: homeassistant
+  labels:
+    app: homeassistant
+    app.kubernetes.io/name: homeassistant
+    app.kubernetes.io/instance: homeassistant
+spec:
+  replicas: {{ .Values.homeassistant.replicaCount | default 1 }}
+  selector:
+    matchLabels:
+      app: homeassistant
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+        app.kubernetes.io/name: homeassistant
+        app.kubernetes.io/instance: homeassistant
+    spec:
+      containers:
+        - name: homeassistant
+          image: "{{ .Values.homeassistant.image.repository | default "ghcr.io/home-assistant/home-assistant" }}:{{ .Values.homeassistant.image.tag | default "stable" }}"
+          imagePullPolicy: {{ .Values.homeassistant.image.pullPolicy | default "IfNotPresent" }}
+          ports:
+            - containerPort: 8123
+          env:
+          {{- range .Values.homeassistant.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+          {{- end }}
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          {{- if .Values.homeassistant.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ if .Values.homeassistant.persistence.existingClaim }}{{ .Values.homeassistant.persistence.existingClaim }}{{ else }}homeassistant-config{{ end }}
+          {{- else }}
+          emptyDir: {}
+          {{- end }}
+{{- end }}

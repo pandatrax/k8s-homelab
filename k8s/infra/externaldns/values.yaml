@@ -1,0 +1,26 @@
+external-dns:
+  provider: aws
+  env:
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /etc/aws/credentials/credentials
+    - name: AWS_DEFAULT_REGION
+      value: us-west-2
+  extraVolumes:
+    - name: aws-credentials
+      secret:
+        secretName: external-dns
+  extraVolumeMounts:
+    - name: aws-credentials
+      mountPath: /etc/aws/credentials
+      readOnly: true
+  policy: sync
+  registry: txt
+  txtOwnerId: homelab
+  interval: 1m
+  domainFilters:
+    - pandatrax.net
+  serviceAccount:
+    create: true
+    name: external-dns
+  rbac:
+    create: true

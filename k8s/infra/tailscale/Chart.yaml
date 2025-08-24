@@ -1,0 +1,8 @@
+apiVersion: v2
+name: tailscale
+version: 0.1.0
+description: "Wrapper chart for deploying Tailscale Operator via GitOps"
+dependencies:
+  - name: tailscale-operator
+    version: 1.72.1   # pin the operator chart version you pulled
+    repository: https://pkgs.tailscale.com/helmcharts

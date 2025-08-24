@@ -1,0 +1,17 @@
+tailscale:
+  operator:
+    # OAuth secret reference
+    oauth:
+      enabled: true
+      secretName: operator-oauth
+
+    # Optional default node tags
+    initialTags:
+      - tag:k8s
+
+    logging: info
+
+    # Proxy settings for pods if you want tailscale-proxied networking
+    proxyImage: tailscale/tailscale
+    proxyTag: v1.72.1
+    proxyFirewallMode: auto

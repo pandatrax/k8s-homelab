@@ -1,0 +1,3 @@
+resources:
+  - metallb-helm.yaml
+  - metallb-config.yaml

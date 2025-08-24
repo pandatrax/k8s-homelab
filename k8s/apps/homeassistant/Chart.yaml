@@ -1,0 +1,4 @@
+apiVersion: v2
+name: homeassistant
+version: 0.1.0
+description: A minimal Helm chart for Home Assistant

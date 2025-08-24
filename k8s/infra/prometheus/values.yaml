@@ -1,0 +1,19 @@
+kube-prometheus-stack:
+  namespaceOverride: monitoring
+
+  grafana:
+    persistence:
+      enabled: true
+      size: 5Gi
+      storageClassName: nfs-client
+
+  prometheus:
+    prometheusSpec:
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: nfs-client
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 10Gi

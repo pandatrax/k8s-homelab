@@ -1,0 +1,18 @@
+cilium:
+  hubble:
+    enabled: true
+    relay:
+      enabled: true
+    ui:
+      enabled: true
+  nodePort:
+    enabled: true
+  kubeProxyReplacement: true
+  ingressController:
+    enabled: true
+    default: true  # Make this the default IngressClass
+    loadBalancerMode: dedicated
+    service:
+      type: LoadBalancer
+    # Optionally, set ingressClassName if you want to override the default name
+    # ingressClassName: cilium

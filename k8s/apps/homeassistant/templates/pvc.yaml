@@ -1,0 +1,15 @@
+{{- if and .Values.homeassistant.persistence.enabled (not .Values.homeassistant.persistence.existingClaim) }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: homeassistant-config
+  labels:
+    app: homeassistant
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.homeassistant.persistence.size }}
+  storageClassName: {{ .Values.homeassistant.persistence.storageClassName }}
+{{- end }}
