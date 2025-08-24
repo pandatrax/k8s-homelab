@@ -6,7 +6,7 @@ spec:
   type: {{ .Values.dashy.service.type }}
   ports:
     - port: {{ .Values.dashy.service.port }}
-      targetPort: 80
+      targetPort: 8080
       protocol: TCP
       name: http
   selector:
