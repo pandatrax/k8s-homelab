@@ -52,5 +52,5 @@ data:
     - name: Homelab
       items:
         - title: Home Assistant
-          url: http://homeassistant.home.svc.cluster.local:8123
+          url: https://homeassistant.tail646b2.ts.net/
           icon: home-assistant
