@@ -2,9 +2,9 @@ dashy:
   replicaCount: 1
 
   image:
-  repository: lissy93/dashy
-  tag: "release-3.1.1"
-  pullPolicy: IfNotPresent
+    repository: lissy93/dashy
+    tag: "release-3.1.1"
+    pullPolicy: IfNotPresent
 
   service:
     type: ClusterIP
