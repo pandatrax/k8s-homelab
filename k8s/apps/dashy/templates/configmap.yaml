@@ -53,21 +53,21 @@ data:
       items:
         - title: ArgoCD
           url: https://localhost:8080/
-          icon: sh-argo-cd
+          icon: hl-argo-cd
         - title: Grafana
           url: https://grafana.tail646b2.ts.net/
-          icon: sh-grafana
+          icon: hl-grafana
         - title: Prometheus
           url: https://prometheus.tail646b2.ts.net/
-          icon: sh-prometheus
+          icon: hl-prometheus
         - title: Tailscale Machines
           url: https://login.tailscale.com/admin/machines
-          icon: sh-tailscale
+          icon: hl-tailscale
     - name: Homelab Apps
       items:
         - title: Home Assistant
           url: https://homeassistant.tail646b2.ts.net/
-          icon: sh-home-assistant
+          icon: hl-home-assistant
         - title: Zwave JS UI
           url: https://zwave.tail646b2.ts.net/
-          icon: zwave
+          #icon: zwave
